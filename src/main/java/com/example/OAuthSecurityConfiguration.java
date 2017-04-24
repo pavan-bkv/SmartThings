@@ -3,6 +3,7 @@ package com.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
+import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
@@ -30,6 +32,9 @@ public class OAuthSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Value("${oauth.token:https://graph.api.smartthings.com/oauth/token}")
 	private String tokenUrl;
+	
+//	@Autowired
+//	private OAuth2ClientContext oauth2ClientContext;
 
 	@Bean
 	public OAuth2RestOperations oauth2RestTemplate() {
@@ -45,8 +50,8 @@ public class OAuthSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    resource.setUserAuthorizationUri(authorizeUrl);
 	    resource.setClientId("b6b2699b-e623-4db7-a539-893da77068f5");
 	    resource.setClientSecret("15a785a1-59c3-45d9-ad4c-68fa3d93ec58");
-	    resource.setScope(Arrays.asList(new String [] {"read", "write", "trust"} ));
-	    resource.setPreEstablishedRedirectUri("http://localhost:8080/captureToken");
+	    resource.setScope(Arrays.asList(new String [] {"app"} ));
+//	    resource.setPreEstablishedRedirectUri("http://localhost:8080/captureToken");
 	    return resource;
 	}
 	
