@@ -1,0 +1,17 @@
+security:
+  oauth2:
+    client:
+      clientId: b6b2699b-e623-4db7-a539-893da77068f5
+      clientSecret: 15a785a1-59c3-45d9-ad4c-68fa3d93ec58
+      accessTokenUri:  https://graph.api.smartthings.com/oauth/token
+      userAuthorizationUri: https://graph.api.smartthings.com/oauth/authorize
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+    resource:
+      userInfoUri: https://graph.facebook.com/me
+
+spring:      
+  logging:
+    level:
+      org.springframework: DEBUG
