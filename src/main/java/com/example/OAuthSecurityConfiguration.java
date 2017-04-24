@@ -33,13 +33,13 @@ public class OAuthSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Value("${oauth.token:https://graph.api.smartthings.com/oauth/token}")
 	private String tokenUrl;
 	
-//	@Autowired
-//	private OAuth2ClientContext oauth2ClientContext;
+	@Autowired
+	private OAuth2ClientContext oauth2ClientContext;
 
 	@Bean
 	public OAuth2RestOperations oauth2RestTemplate() {
 	    AccessTokenRequest atr = new DefaultAccessTokenRequest();
-	    return new OAuth2RestTemplate(resource(),
+	    return new OAuth2RestTemplate(resource(), 
 	            new DefaultOAuth2ClientContext(atr));
 	}
 
