@@ -57,9 +57,12 @@ public class OAuthSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    resource.setClientSecret("15a785a1-59c3-45d9-ad4c-68fa3d93ec58");
 	    resource.setScope(Arrays.asList(new String [] {"app"} ));
 	    resource.setAuthenticationScheme(AuthenticationScheme.form);
+	    resource.setUseCurrentUri(false);
+//	    resource.setPreEstablishedRedirectUri("/listSwitches");
 //	    resource.setPreEstablishedRedirectUri("http://localhost:8080/captureToken");
 	    return resource;
 	}
+	
 	
 	
 	@Override
