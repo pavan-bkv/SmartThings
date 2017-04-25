@@ -40,18 +40,19 @@ public class SmartThingsController {
 //	            .getForEntity("https://graph.api.smartthings.com/api/smartapps/endpoints",
 //	                    String.class);
 //	    return forEntity.getBody();
-		String accessToken = (String) session.getAttribute("access_token");
-		System.out.println("Session token: " + accessToken);
+		//String accessToken = (String) session.getAttribute("access_token");
+		System.out.println("Session token: " + oAuthRestTemplate.getAccessToken());
 		
 //	    ResponseEntity<String> forEntity = oAuthRestTemplate
 //	            .getForEntity("http://sercverUsingOAuth2/rest/resourceToConsume",
 //	                    String.class);
 //	    return forEntity.getBody();
-		RestTemplate template = new RestTemplate();
-		HttpHeaders headers = new HttpHeaders();
-		headers.set("Authorization", "Bearer " + accessToken);
-		HttpEntity<String> entity = new HttpEntity<>(headers);
-		return template.exchange("https://graph.api.smartthings.com/api/smartapps/endpoints", HttpMethod.GET, entity, String.class).getBody();
+//		RestTemplate template = new RestTemplate();
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.set("Authorization", "Bearer " + accessToken);
+//		HttpEntity<String> entity = new HttpEntity<>(headers);
+		return oAuthRestTemplate.getForObject("https://graph.api.smartthings.com/api/smartapps/endpoints",  String.class);
+		//return template.exchange("https://graph.api.smartthings.com/api/smartapps/endpoints", HttpMethod.GET, entity, String.class).getBody();
 	}
 	
 //	@RequestMapping(value = "/captureToken", method = RequestMethod.GET)
